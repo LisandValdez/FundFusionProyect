@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div>
       {
-        usuarioGlobal ? <><Sidebar/> <ChatScreen/> </> : <Login/>
+        usuarioGlobal ? <> <ChatScreen/> </> : <Login/>
       }
     </div>
   );

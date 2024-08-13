@@ -34,9 +34,9 @@ export default function Login() {
                     <h2 className='loginSubTittle'>Gestiona tu dinero y trabajo</h2>
                 </div>
                 <div className="loginButtons">
-                    <button className="loginGoogle"><GoogleIcon/>Seguir con Google</button>
-                    <button className="loginEmail"><EmailIcon/>Seguir con mi Correo</button>
-                    <p className='loginAccount'>Ya tengo cuenta en FunFusion</p>
+                    <button className="loginGoogle"><GoogleIcon fontSize='medium'/>Seguir con Google</button>
+                    <button className="loginEmail"><EmailIcon fontSize='medium'/>Seguir con mi Correo</button>
+                    <p className='loginAccount'>Ya tengo cuenta en FundFusion</p>
                 </div>
             </div>
         </div>
