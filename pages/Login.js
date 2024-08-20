@@ -1,8 +1,18 @@
 import GoogleIcon from '@mui/icons-material/Google';
 import EmailIcon from '@mui/icons-material/Email';
+import { useSession, signIn, signOut } from "next-auth/react"
 import React from 'react';
 
+
+
 export default function Login() {
+    const {data: session} = useSession()
+    if(session) {
+        return <>
+        Signed in as {session.user.email} <br/>
+      <button onClick={() => signOut()}>Sign out</button>
+    </>
+    }
     return(
         <div className='loginDiv'>
             <div className='loginGrid'>
@@ -34,7 +44,7 @@ export default function Login() {
                     <h2 className='loginSubTittle'>Gestiona tu dinero y trabajo</h2>
                 </div>
                 <div className="loginButtons">
-                    <button className="loginGoogle"><GoogleIcon fontSize='medium'/>Seguir con Google</button>
+                    <button className="loginGoogle" onClick={() => signIn('google')}><GoogleIcon fontSize='medium'/>Seguir con Google</button>
                     <button className="loginEmail"><EmailIcon fontSize='medium'/>Seguir con mi Correo</button>
                     <p className='loginAccount'>Ya tengo cuenta en FundFusion</p>
                 </div>
