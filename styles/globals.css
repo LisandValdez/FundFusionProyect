@@ -202,7 +202,6 @@ html, body {
   font-weight: 600;
   color: var(--negro);
   transition: 0.8s;
-  transform: translateX(-100%);
 }
 
 .CardButton:hover{
@@ -212,7 +211,6 @@ html, body {
   cursor: pointer;
   font-size: 20px;
   filter: brightness(1.75);
-  transform: translateX(100%);
 }
 
 /* FORM PAGE */
