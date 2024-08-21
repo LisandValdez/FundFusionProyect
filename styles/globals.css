@@ -129,21 +129,21 @@ html, body {
   cursor: pointer;
 }
 
-/*Payment Cards Page*/
+/* Payment Cards Page */
 
-.CardsConteiner{
+.CardsConteiner {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background:linear-gradient(white,var(--others2),var(--accent),var(--primary));
+  background: linear-gradient(white,var(--others2),var(--accent),var(--primary));
   font-family: "Jost", sans-serif;
   padding: 40px 30px;
   box-sizing: border-box;
 }
 
-.Cards{
+.Cards {
   display: flex;
   flex-direction: column;
   justify-items: start;
@@ -157,10 +157,9 @@ html, body {
   height: 450px;
   max-width: 399px;
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.05);
-
 }
 
-.CardTittle{
+.CardTittle {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -172,26 +171,25 @@ html, body {
   padding-top: 0;
 }
 
-.CardTittle h2{
+.CardTittle h2 {
   color: var(--primary);
 }
 
-.CardTittle span{
+.CardTittle span {
   color: var(--secondary);
 }
 
-.CardInfo{
+.CardInfo {
   border-top: 2px solid var(--accent);
   height: 300px;
   color: black;
 }
 
-.CardInfo ul li{
+.CardInfo ul li {
   list-style:circle;
 }
 
-
-.CardButton{
+.CardButton {
   width: 360px;
   height: 60px;
   border-radius: 8px;
@@ -204,7 +202,7 @@ html, body {
   transition: 0.8s;
 }
 
-.CardButton:hover{
+.CardButton:hover {
   color: var(--accent);
   border: 1px solid var(--accent);
   background-color: transparent;
@@ -337,11 +335,13 @@ input[type="tel"],
   padding: 20px;
   box-sizing: border-box;
   text-align: center;
+  position: relative;
 }
 
 .backButton {
-  align-self: flex-start;
-  margin-bottom: 20px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
   background-color: transparent;
   border: none;
   color: var(--negro);
@@ -361,7 +361,8 @@ input[type="tel"],
   font-size: 2.5rem;
   color: var(--primary);
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  margin-top: 0px;
 }
 
 .emailSubtitle {
@@ -383,34 +384,45 @@ input[type="tel"],
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .openEmailButton:hover {
   background-color: var(--secondary);
 }
 
-/* Password */
-.passwordContainer {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.passwordInput {
+.nextButton {
   width: 100%;
-  padding-right: 40px; /* Espacio para el icono del ojo */
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid var(--secondary);
+  padding: 12px;
+  font-size: 1rem;
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
   border-radius: 5px;
-  margin: 0px 0px 15px;
-  padding: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
 }
 
-.togglePasswordVisibility {
-  position: absolute;
-  right: 10px;
-  cursor: pointer;
-  user-select: none;
-  font-size: 25px;
+.nextButton:hover {
+  background-color: var(--secondary);
+}
+
+.emailImageContainer {
+
+  width: 50%;
+  height: 40%;
+}
+
+.planeImage {
+  width: 147.6px; 
+  height: 93.93px; 
+  margin-left: 50px; 
+  margin-right: 800px; 
+}
+
+.dottedLineImage {
+  width: 300px; 
+  height: 73px; 
+  margin-left: 10px; 
+  margin-right: 50px; 
 }

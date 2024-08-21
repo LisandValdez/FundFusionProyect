@@ -1,8 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 import { useRouter } from 'next/router';
+
+// Contexto para el correo electrónico
+const EmailContext = createContext();
+
+export function EmailProvider({ children }) {
+    const [email, setEmail] = useState('');
+    return (
+        <EmailContext.Provider value={{ email, setEmail }}>
+            {children}
+        </EmailContext.Provider>
+    );
+}
+
+export function useEmail() {
+    return useContext(EmailContext);
+}
 
 export default function FormsEmail() {
     const router = useRouter();
+    const { setEmail } = useEmail();
     const [passwordVisible, setPasswordVisible] = useState(false);
 
     const handlePasswordVisibility = () => {
@@ -11,11 +28,22 @@ export default function FormsEmail() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        router.push('/ValidEmail'); 
+        const email = e.target.email.value;
+        setEmail(email);
+        router.push('/ValidEmail');
+    };
+
+    const handleBackClick = () => {
+        router.push('/Login');
     };
 
     return (
         <div className="formDiv">
+            {/* Botón de regresar, ubicado en la parte superior izquierda */}
+            <button className="backButton" onClick={handleBackClick}>
+                &lt; Regresar
+            </button>
+
             <div className="formSideLeft">
                 <div className="logoContainer">
                     <img src="/images/logo.png" alt="FundFusion Logo" className="formLogo" />
@@ -26,7 +54,7 @@ export default function FormsEmail() {
                     <h1 className="formTitle">Ingresar a Fund Fusion</h1>
                     <p className="formSubtitle">Te enviaremos un correo con el que te conectarás al instante.</p>
                     
-                    <input type="email" placeholder="Correo electrónico" required />
+                    <input type="email" name="email" placeholder="Correo electrónico" required />
                     <input type="text" placeholder="Nombre" required />
                     <input type="text" placeholder="Apellido" required />
                     <input type="tel" placeholder="Teléfono" />

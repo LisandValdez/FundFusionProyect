@@ -1,11 +1,17 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import { useEmail } from './FormsEmail'; // Asegúrate de importar el hook desde el archivo correcto
 
 const ValidEmail = () => {
   const router = useRouter();
+  const { email } = useEmail(); // Obtén el correo del contexto
 
   const handleBackClick = () => {
     router.push('/FormsEmail');
+  };
+
+  const handleNextClick = () => {
+    router.push('/paymentCardsPage');
   };
 
   const handleOpenEmailAppClick = () => {
@@ -14,27 +20,34 @@ const ValidEmail = () => {
 
   return (
     <div className="validEmailContainer">
+      {/* Botón de regresar, ubicado en la parte superior izquierda */}
       <button className="backButton" onClick={handleBackClick}>
         &lt; Regresar
       </button>
+
+      {/* Contenido central */}
       <div className="emailContent">
+        {/* Título */}
         <h1 className="emailTitle">¡REVISA TU CORREO!</h1>
+
+        {/* Subtítulo con el correo */}
         <p className="emailSubtitle">
-          Para confirmar tu dirección, toca el botón en el correo que enviamos a <strong>usuariousuario2017@gmail.com</strong>
+          Para confirmar tu dirección, toca el botón en el correo que enviamos a <strong>{email}</strong>
         </p>
-        <div className="emailIcon">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width="100"
-            height="100"
-            fill="#48CAE4"
-          >
-            <path d="M12 0a12 12 0 0 0 0 24 12 12 0 0 0 0-24zm0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10zm-1-15h2v7h-2zm1 12a1.5 1.5 0 0 1 0-3 1.5 1.5 0 0 1 0 3z" />
-          </svg>
+
+        {/* Espacio para las imágenes */}
+        <div className="emailImageContainer">
+          <img src="/images/plane.png" alt="Avión de papel" className="planeImage" />
+          <img src="/images/dotted-line.png" alt="Líneas punteadas" className="dottedLineImage" />
         </div>
+
+        {/* Botones centrados */}
         <button className="openEmailButton" onClick={handleOpenEmailAppClick}>
           Abrir la aplicación de correo electrónico
+        </button>
+
+        <button className="nextButton" onClick={handleNextClick}>
+          Siguiente
         </button>
       </div>
     </div>
