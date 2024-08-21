@@ -1,14 +1,24 @@
 import React, {useState} from "react";
 import Login from "./Login";
+import { useSession} from "next-auth/react"
+import PaymentCards from "./paymentCardsPage";
 
 
 export default function Home() {
-  const {usuarioGlobal, setUsuarioGlobal} = useState(null);
-
+  const {data: session} = useSession()
+  if(session) {
+    return (
+      <div>
+        {
+          <PaymentCards/>
+        }
+      </div>
+    );
+  }
   return (
     <div>
       {
-        usuarioGlobal ? <> <ChatScreen/> </> : <Login/>
+        <Login/>
       }
     </div>
   );

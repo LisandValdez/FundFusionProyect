@@ -1,6 +1,12 @@
-
+import { useRouter } from 'next/router';
 
 export default function PaymentCards () {
+    const router = useRouter();
+
+    const handlePayClick = () => {
+        router.push('/chat');
+    };
+
     return <>
         <div className="CardsConteiner">
             <div className="Cards">
@@ -19,7 +25,7 @@ export default function PaymentCards () {
                     </ul>
                 </div>
                 <div>
-                    <button className="CardButton">Crear mi billetera</button>
+                    <button className="CardButton" onClick={handlePayClick}>Crear mi billetera</button>
                 </div>
             </div>
             <div className="Cards">
