@@ -21,6 +21,7 @@ html, body {
   --background-light: #F0F4FF;
   --background-dark: #112269;
   --white: #ffffff;
+  --button-color: #2243CF;
 }
 
 /* LOGIN PAGE */
@@ -193,12 +194,12 @@ html, body {
   width: 360px;
   height: 60px;
   border-radius: 8px;
-  background-color: var(--others2);
+  background-color: var(--button-color);
   border: 0;
   box-shadow: 1px;
   font-size: 16px;
   font-weight: 600;
-  color: var(--negro);
+  color: var(--white);
   transition: 0.8s;
 }
 
@@ -312,7 +313,7 @@ input[type="tel"],
   width: 100%;
   padding: 12px;
   font-size: 16px;
-  background-color: var(--primary);
+  background-color: var(--button-color);
   color: var(--white);
   border: none;
   border-radius: 5px;
@@ -340,12 +341,11 @@ input[type="tel"],
 
 .backButton {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 10px;
+  left: 10px;
   background-color: transparent;
   border: none;
-  color: var(--negro);
-  font-size: 1rem;
+  font-size: 16px;
   cursor: pointer;
 }
 
@@ -375,54 +375,42 @@ input[type="tel"],
   margin-bottom: 40px;
 }
 
-.openEmailButton {
-  width: 100%;
-  padding: 12px;
-  font-size: 1rem;
-  background-color: var(--primary);
-  color: var(--white);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
-
-.openEmailButton:hover {
-  background-color: var(--secondary);
-}
-
+.openEmailButton,
 .nextButton {
   width: 100%;
   padding: 12px;
   font-size: 1rem;
-  background-color: var(--primary);
+  background-color: var(--button-color);
   color: var(--white);
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
+.openEmailButton:hover,
 .nextButton:hover {
   background-color: var(--secondary);
 }
 
-.emailImageContainer {
-
+.emailImageContainer{
   width: 50%;
   height: 40%;
-}
-
-.planeImage {
-  width: 147.6px; 
-  height: 93.93px; 
-  margin-left: 50px; 
-  margin-right: 800px; 
-}
-
-.dottedLineImage {
-  width: 300px; 
-  height: 73px; 
-  margin-left: 10px; 
-  margin-right: 50px; 
-}
+  
+  }
+  
+  .planeImage {
+  width: 147.6px;
+  height: 93.93px;
+  margin-left: 50px;
+  margin-right: 800px;
+  
+  }
+  
+  .dottedLineImage{
+  width: 300px;
+  height: 73px;
+  margin-left: 10px;
+  margin-right: 50px;
+  
+  }
