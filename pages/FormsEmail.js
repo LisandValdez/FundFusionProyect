@@ -1,32 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 import { useRouter } from 'next/router';
+import { useAuth } from '@/context/authContext';
+
 
 export default function FormsEmail() {
-    const router = useRouter();
+    const auth = useAuth()
+    const [emailRegister, setEmailRegister] = useState("");
+    const [passwordRegister, setPasswordRegister] = useState("");
+    
     const [passwordVisible, setPasswordVisible] = useState(false);
-
     const handlePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
 
-    const handleSubmit = (e) => {
+    const router = useRouter();
+    const handleRegister = (e) => {
         e.preventDefault();
-        router.push('/ValidEmail'); 
+        auth.register(emailRegister, passwordRegister)
+        router.push('/ValidEmail');
+    };
+    const handleBackClick = () => {
+        router.push('/Login');
     };
 
     return (
         <div className="formDiv">
+            {/* Botón de regresar, ubicado en la parte superior izquierda */}
+            <button className="backButton" onClick={handleBackClick}>
+                &lt; Regresar
+            </button>
+
             <div className="formSideLeft">
                 <div className="logoContainer">
                     <img src="/images/logo.png" alt="FundFusion Logo" className="formLogo" />
                 </div>
             </div>
             <div className="formSideRight">
-                <form onSubmit={handleSubmit} className="formContainer">
+                <form className="formContainer">
                     <h1 className="formTitle">Ingresar a Fund Fusion</h1>
                     <p className="formSubtitle">Te enviaremos un correo con el que te conectarás al instante.</p>
                     
-                    <input type="email" placeholder="Correo electrónico" required />
+                    <input type="email" name="email" placeholder="Correo electrónico" 
+                        onChange={(e)=> setEmailRegister(e.target.value)} required />
                     <input type="text" placeholder="Nombre" required />
                     <input type="text" placeholder="Apellido" required />
                     <input type="tel" placeholder="Teléfono" />
@@ -38,6 +53,7 @@ export default function FormsEmail() {
                             type={passwordVisible ? "text" : "password"}
                             placeholder="Contraseña"
                             className="passwordInput"
+                            onChange={(e)=> setPasswordRegister(e.target.value)}
                             required
                         />
                         <span
@@ -53,7 +69,7 @@ export default function FormsEmail() {
                         <label htmlFor="marketing">Quiero recibir mensajes de marketing acerca de FundFusion.</label>
                     </div>
 
-                    <button type="submit" className="formButton">Siguiente</button>
+                    <button type="submit" className="formButton" onClick={(e)=>handleRegister(e)}>Siguiente</button>
                 </form>
             </div>
         </div>

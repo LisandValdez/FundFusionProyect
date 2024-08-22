@@ -21,6 +21,7 @@ html, body {
   --background-light: #F0F4FF;
   --background-dark: #112269;
   --white: #ffffff;
+  --button-color: #2243CF;
 }
 
 /* LOGIN PAGE */
@@ -131,9 +132,9 @@ html, body {
   filter: brightness(1.7);
 }
 
-/*Payment Cards Page*/
+/* Payment Cards Page */
 
-.CardsConteiner{
+.CardsConteiner {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -145,7 +146,7 @@ html, body {
   box-sizing: border-box;
 }
 
-.Cards{
+.Cards {
   display: flex;
   flex-direction: column;
   justify-items: start;
@@ -159,10 +160,9 @@ html, body {
   height: 450px;
   max-width: 399px;
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.05);
-
 }
 
-.CardTittle{
+.CardTittle {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -174,39 +174,38 @@ html, body {
   padding-top: 0;
 }
 
-.CardTittle h2{
+.CardTittle h2 {
   color: var(--primary);
 }
 
-.CardTittle span{
+.CardTittle span {
   color: var(--secondary);
 }
 
-.CardInfo{
+.CardInfo {
   border-top: 2px solid var(--accent);
   height: 300px;
   color: black;
 }
 
-.CardInfo ul li{
+.CardInfo ul li {
   list-style:circle;
 }
 
-
-.CardButton{
+.CardButton {
   width: 360px;
   height: 60px;
   border-radius: 8px;
-  background-color: var(--others2);
+  background-color: var(--button-color);
   border: 0;
   box-shadow: 1px;
   font-size: 16px;
   font-weight: 600;
-  color: var(--negro);
+  color: var(--white);
   transition: 0.8s;
 }
 
-.CardButton:hover{
+.CardButton:hover {
   color: var(--accent);
   border: 1px solid var(--accent);
   background-color: transparent;
@@ -316,7 +315,7 @@ input[type="tel"],
   width: 100%;
   padding: 12px;
   font-size: 16px;
-  background-color: var(--primary);
+  background-color: var(--button-color);
   color: var(--white);
   border: none;
   border-radius: 5px;
@@ -339,15 +338,16 @@ input[type="tel"],
   padding: 20px;
   box-sizing: border-box;
   text-align: center;
+  position: relative;
 }
 
 .backButton {
-  align-self: flex-start;
-  margin-bottom: 20px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
   background-color: transparent;
   border: none;
-  color: var(--negro);
-  font-size: 1rem;
+  font-size: 16px;
   cursor: pointer;
 }
 
@@ -363,7 +363,8 @@ input[type="tel"],
   font-size: 2.5rem;
   color: var(--primary);
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  margin-top: 0px;
 }
 
 .emailSubtitle {
@@ -376,43 +377,44 @@ input[type="tel"],
   margin-bottom: 40px;
 }
 
-.openEmailButton {
+.openEmailButton,
+.nextButton {
   width: 100%;
   padding: 12px;
   font-size: 1rem;
-  background-color: var(--primary);
+  background-color: var(--button-color);
   color: var(--white);
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
-.openEmailButton:hover {
+.openEmailButton:hover,
+.nextButton:hover {
   background-color: var(--secondary);
 }
 
-/* Password */
-.passwordContainer {
+.emailImageContainer{
+  width: 50%;
+  height: 40%;
   position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.passwordInput {
-  width: 100%;
-  padding-right: 40px; /* Espacio para el icono del ojo */
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid var(--secondary);
-  border-radius: 5px;
-  margin: 0px 0px 15px;
-  padding: 10px;
-}
-
-.togglePasswordVisibility {
+  
+  }
+  
+.planeImage {
+  width: 100px;
+  height: 70px;
   position: absolute;
-  right: 10px;
-  cursor: pointer;
-  user-select: none;
-  font-size: 25px;
-}
+  left: 264px;  
+  top: 39px;
+  
+  }
+  
+  .dottedLineImage{
+  width: 300px;
+  height: 73px;
+  margin-left: 10px;
+  margin-right: 50px;
+  
+  }

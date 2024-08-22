@@ -1,16 +1,29 @@
 import GoogleIcon from '@mui/icons-material/Google';
 import EmailIcon from '@mui/icons-material/Email';
-import {signIn} from "next-auth/react"
 import React from 'react';
 import { useRouter } from 'next/router';
+import { AuthProvider, useAuth } from '@/context/authContext';
 
 
 
 export default function Login() { 
+    const auth = useAuth();
     const router = useRouter();
 
     const handleEmailClick = () => {
         router.push('/FormsEmail');
+    };
+    const handleLogedClick = () => {
+        router.push('/Loged');
+    }
+    const handleGoogle = async (e) => {
+        e.preventDefault();
+        try {
+            await auth.loginWithGoogle();
+            router.push('/paymentCardsPage'); // Redirige después de iniciar sesión
+        } catch (error) {
+            console.error("Error al iniciar sesión con Google:", error.message);
+        }
     };
 
     return (
@@ -57,9 +70,9 @@ export default function Login() {
                     <h2 className='loginSubTittle'>Gestiona tu dinero y trabajo</h2>
                 </div>
                 <div className="loginButtons">
-                    <button className="loginGoogle" onClick={() => signIn('google')}><GoogleIcon fontSize='medium'/>Seguir con Google</button>
+                    <button className="loginGoogle" onClick={(e)=>handleGoogle(e)}><GoogleIcon fontSize='medium'/>Seguir con Google</button>
                     <button className="loginEmail" onClick={handleEmailClick}><EmailIcon fontSize='medium'/>Registrate</button>
-                    <p className='loginAccount'>Ya tengo cuenta en FundFusion</p>
+                    <p className='loginAccount' onClick={handleLogedClick}>Ya tengo cuenta en FundFusion</p>
 
                 </div>
             </div>

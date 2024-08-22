@@ -1,25 +1,20 @@
-import { useSession, signOut } from "next-auth/react"
+import { AuthProvider, useAuth } from '@/context/authContext'
 import { useRouter } from "next/router"
-import { useEffect } from "react"
+
 
 export default function ChatPage() {
-    const { data: session, status } = useSession()
+    const auth = useAuth();
     const router = useRouter()
-
-    useEffect(() => {
-        if (status === "unauthenticated") {
-            router.push("/")
-        }
-    }, [status, router])
-
-    if (session) {
-        return (
-            <>
-                Signed in as {session.user.email} <br/>
-                <button onClick={() => signOut()}>Sign out</button>
-            </>
-        )
+    const handleLogout = () => {
+        auth.logout();
+        router.push('/Login')
     }
 
-    return null
+
+        return (
+            <>
+                Signed in as  <br/>
+                <button onClick={()=> handleLogout()}>Sign out</button>
+            </>
+        )
 }
