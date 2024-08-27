@@ -20,7 +20,7 @@ export const useAuth = ()=> {
 }
 
 export function AuthProvider({children}){
-    const [user, setUser] = useState("")
+    const [user, setUser] = useState(null)
     useEffect(()=>{
         const suscribed = onAuthStateChanged(auth, (currentUser)=>{
             if(!currentUser){
@@ -37,7 +37,13 @@ export function AuthProvider({children}){
         const response = await createUserWithEmailAndPassword(auth, email, password)
     };
     const login = async (email, password) => {
-        const response = await signInWithEmailAndPassword(auth, email, password)
+        try {
+            const response = await signInWithEmailAndPassword(auth, email, password);
+            // Maneja la respuesta si es necesario
+        } catch (error) {
+            console.error("Error logging in user:", error);
+            // Maneja el error según sea necesario
+        }
     };
     const loginWithGoogle = async () =>{
         const responseGoogle = new GoogleAuthProvider()
@@ -45,6 +51,7 @@ export function AuthProvider({children}){
     }
     const logout = async () => {
         const response = await signOut(auth);
+        console.log(user)
       };
 
 

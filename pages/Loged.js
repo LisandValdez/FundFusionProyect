@@ -1,6 +1,7 @@
 import { useAuth } from "@/context/authContext";
 import { useState } from "react";
 import { useRouter } from 'next/router';
+import React, {useEffect} from "react";
 
 export default function Loged() {
     const auth = useAuth();
@@ -8,6 +9,12 @@ export default function Loged() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const router = useRouter();
+    const { user } = useAuth();
+    useEffect(() => {
+        if (user) {
+          router.push("/chat");
+        }
+      }, [user, router]);
 
     const handleLogin = async (e) => {
         e.preventDefault();

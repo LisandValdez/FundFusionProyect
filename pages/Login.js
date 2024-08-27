@@ -1,6 +1,6 @@
 import GoogleIcon from '@mui/icons-material/Google';
 import EmailIcon from '@mui/icons-material/Email';
-import React from 'react';
+import React, {useEffect} from "react";
 import { useRouter } from 'next/router';
 import { AuthProvider, useAuth } from '@/context/authContext';
 
@@ -9,6 +9,7 @@ import { AuthProvider, useAuth } from '@/context/authContext';
 export default function Login() { 
     const auth = useAuth();
     const router = useRouter();
+
 
     const handleEmailClick = () => {
         router.push('/FormsEmail');
