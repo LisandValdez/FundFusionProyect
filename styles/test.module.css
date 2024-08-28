@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.razonSocialField {
+  position: relative;
+  border: 2px solid #002855; /* Azul marino */
+  border-radius: 5px;
+  padding: 10px;
+  background-color: white;
+  width: 300px; /* Ajusta el ancho según tus necesidades */
+}
+
+.label {
+  position: absolute;
+  top: -12px; /* Ajusta la posición vertical del texto */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  padding: 0 5px;
+  font-weight: bold;
+  color: #002855; /* Azul marino */
+}
+
+.inputField {
+  width: 100%;
+  border: none;
+  padding: 8px;
+  font-size: 1em;
+  background: transparent;
+  outline: none; /* Quita el borde del input al enfocarse */
+}
