@@ -1,0 +1,50 @@
+/* RegisterUser.module.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--white);
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .title {
+    font-family: 'Greater Theory', sans-serif;
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 30px;
+  }
+  
+  .form {
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid var(--gray);
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .nextButton {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    background-color: var(--button-color);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    background-color: #2243CF;
+  }
+  
+  .nextButton:hover {
+    background-color: var(--secondary);
+  }
+  

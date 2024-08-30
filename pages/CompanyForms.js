@@ -1,94 +1,135 @@
 import React from 'react';
-import { useRouter } from 'next/router'; // Importa useRouter para manejar la navegación
-import styles from '../styles/CompanyForms.module.css';
+import { useRouter } from 'next/router';
 
 const CompanyForms = () => {
   const router = useRouter();
 
   const handleBackClick = () => {
-    router.back(); 
+    router.back();
   };
 
   return (
-    <div className={styles.container}>
-      <button className={styles.backButton} onClick={handleBackClick}>
-        &lt; Regresar
-      </button>
-      <h2 className={styles.title}>DATOS DE LA EMPRESA</h2>
-      <form className={styles.form}>
-        <div className={styles.formGroup}>
-          <label className={styles.label}>Tipo de empresa</label>
-          <select className={styles.input}>
-            <option>Seleccionar</option>
-            <option>Microempresa</option>
-            <option>Pequeña Empresa</option>
-            <option>Mediana Empresa</option>
-            <option>Gran Empresa</option>
-            <option>Empresa Privada</option>
-            <option>Empresa Pública</option>
-            <option>Empresa Mixta</option>
-            <option>Industria</option>
-            <option>Comercio</option>
-            <option>Servicios</option>
-            <option>Tecnología</option>
-            <option>Local</option>
-            <option>Nacional</option>
-            <option>Internacional</option>
-            <option>Multinacional</option>
-            <option>Sociedad Anónima (SA)</option>
-            <option>Sociedad Limitada (SL)</option>
-            <option>Empresa Individual</option>
-            <option>Cooperativa</option>
-            <option>Primario</option>
-            <option>Secundario</option>
-            <option>Terciario</option>
-          </select>
-        </div>
-        <div className={styles.formRow}>
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Razón social</label>
-            <input type="text" className={styles.input} placeholder="Nombre legal de la empresa" />
+    <div className="min-h-screen bg-gradient-to-b from-black to-indigo-900 flex items-center justify-center">
+      <div className="max-w-xl w-full p-8 bg-black bg-opacity-40 rounded-lg shadow-lg relative">
+        <button
+          className="text-white absolute top-4 left-4"
+          onClick={handleBackClick}
+        >
+          &lt; Regresar
+        </button>
+        <h2 className="text-white text-center text-2xl font-bold mb-6">DATOS DE LA EMPRESA</h2>
+        <form className="space-y-6">
+          <div className="mb-4">
+            <label className="block text-white text-sm font-medium mb-2">Tipo de empresa</label>
+            <select className="w-full p-2.5 bg-transparent border border-blue-500 rounded-md text-white">
+              <option>Seleccionar</option>
+              <option>Microempresa</option>
+              <option>Pequeña Empresa</option>
+              <option>Mediana Empresa</option>
+              <option>Gran Empresa</option>
+              <option>Empresa Privada</option>
+              <option>Empresa Pública</option>
+              <option>Empresa Mixta</option>
+              <option>Industria</option>
+              <option>Comercio</option>
+              <option>Servicios</option>
+              <option>Tecnología</option>
+              <option>Local</option>
+              <option>Nacional</option>
+              <option>Internacional</option>
+              <option>Multinacional</option>
+              <option>Sociedad Anónima (SA)</option>
+              <option>Sociedad Limitada (SL)</option>
+              <option>Empresa Individual</option>
+              <option>Cooperativa</option>
+              <option>Primario</option>
+              <option>Secundario</option>
+              <option>Terciario</option>
+            </select>
           </div>
-          <div className={styles.formGroup}>
-            <label className={styles.label}>NIF / CIF / RUT</label>
-            <input type="text" className={styles.input} placeholder="00.0000000" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-white text-sm font-medium mb-2">Razón social</label>
+              <input
+                type="text"
+                className="w-full p-2.5 bg-transparent border border-blue-500 rounded-md text-white"
+                placeholder="Nombre legal de la empresa"
+              />
+            </div>
+            <div>
+              <label className="block text-white text-sm font-medium mb-2">NIF / CIF / RUT</label>
+              <input
+                type="text"
+                className="w-full p-2.5 bg-transparent border border-blue-500 rounded-md text-white"
+                placeholder="00.0000000"
+              />
+            </div>
           </div>
-        </div>
-        <div className={styles.formRow}>
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Industria</label>
-            <input type="text" className={styles.input} placeholder="Indumentaria" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-white text-sm font-medium mb-2">Industria</label>
+              <input
+                type="text"
+                className="w-full p-2.5 bg-transparent border border-blue-500 rounded-md text-white"
+                placeholder="Indumentaria"
+              />
+            </div>
+            <div>
+              <label className="block text-white text-sm font-medium mb-2">Sitio web</label>
+              <input
+                type="text"
+                className="w-full p-2.5 bg-transparent border border-blue-500 rounded-md text-white"
+                placeholder="www.fundfusions.io"
+              />
+            </div>
           </div>
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Sitio web</label>
-            <input type="text" className={styles.input} placeholder="www.fundfusions.io" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-white text-sm font-medium mb-2">Dirección comercial</label>
+              <input
+                type="text"
+                className="w-full p-2.5 bg-transparent border border-blue-500 rounded-md text-white"
+                placeholder="Estados Unidos, Florida"
+              />
+            </div>
+            <div>
+              <label className="block text-white text-sm font-medium mb-2">Domicilio</label>
+              <input
+                type="text"
+                className="w-full p-2.5 bg-transparent border border-blue-500 rounded-md text-white"
+                placeholder="Arrayan"
+              />
+            </div>
           </div>
-        </div>
-        <div className={styles.formRow}>
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Dirección comercial</label>
-            <input type="text" className={styles.input} placeholder="Estados Unidos, Florida" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-white text-sm font-medium mb-2">Numeración</label>
+              <input
+                type="text"
+                className="w-full p-2.5 bg-transparent border border-blue-500 rounded-md text-white"
+                placeholder="8571"
+              />
+            </div>
+            <div>
+              <label className="block text-white text-sm font-medium mb-2">Código postal</label>
+              <input
+                type="text"
+                className="w-full p-2.5 bg-transparent border border-blue-500 rounded-md text-white"
+                placeholder="5000"
+              />
+            </div>
           </div>
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Domicilio</label>
-            <input type="text" className={styles.input} placeholder="Arrayan" />
-          </div>
-        </div>
-        <div className={styles.formRow}>
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Numeración</label>
-            <input type="text" className={styles.input} placeholder="8571" />
-          </div>
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Código postal</label>
-            <input type="text" className={styles.input} placeholder="5000" />
-          </div>
-        </div>
-        <button type="submit" className={styles.submitButton}>Siguiente</button>
-        <p className={styles.footerText}>
-          Al continuar aceptas nuestros <a href="#">Acuerdo de servicios principales</a>, <a href="#">Condiciones de servicio al usuario</a> y <a href="#">Términos complementarios de FundFusion</a>. Más información en <a href="#">Política de Privacidad</a> y <a href="#">Política de cookies</a>.
-        </p>
-      </form>
+          <button
+            type="submit"
+            className="w-full py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition-colors"
+          >
+            Siguiente
+          </button>
+          <p className="text-white text-xs text-center mt-4">
+            Al continuar aceptas nuestros <a href="#" className="underline">Acuerdo de servicios principales</a>, <a href="#" className="underline">Condiciones de servicio al usuario</a> y <a href="#" className="underline">Términos complementarios de FundFusion</a>. Más información en <a href="#" className="underline">Política de Privacidad</a> y <a href="#" className="underline">Política de cookies</a>.
+          </p>
+        </form>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,100 @@
+/* LoginRegister.module.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--white);
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  .title {
+    font-family: 'Greater Theory', sans-serif;
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 30px;
+  }
+  
+  .form {
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid var(--gray);
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .error {
+    color: var(--error);
+    font-size: 0.875rem;
+    margin-bottom: 15px;
+  }
+  
+  .checkboxContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .checkboxContainer input[type='checkbox'] {
+    display: none;
+  }
+  
+  .checkboxContainer .checkmark {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--primary);
+    border-radius: 3px;
+    margin-right: 10px;
+    position: relative;
+  }
+  
+  .checkboxContainer input[type='checkbox']:checked + .checkmark {
+    background-color: var(--primary);
+  }
+  
+  .checkboxContainer input[type='checkbox']:checked + .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: 0;
+    left: 2px;
+    color: var(--white);
+  }
+  
+  .nextButton {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    background-color: var(--button-color);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+
+  .nextButton:hover {
+    background-color: var(--secondary);
+  }
+  
+  .backButton {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 8px 16px;
+    background-color: var(--secondary);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
