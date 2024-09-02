@@ -1,8 +1,12 @@
 import GoogleIcon from '@mui/icons-material/Google';
 import EmailIcon from '@mui/icons-material/Email';
+import { db } from "@/firebase/credenciales";
 import React from "react";
 import { useRouter } from 'next/router';
+import { doc, getDoc } from "firebase/firestore";
 import { useAuth } from '@/context/authContext';
+import { saveUserToFirestore } from './api/user';
+import userModel from '@/models/User';
 
 export default function Login() { 
     const auth = useAuth();
@@ -19,13 +23,56 @@ export default function Login() {
     const handleGoogle = async (e) => {
         e.preventDefault();
         try {
-            await auth.loginWithGoogle();
-            router.push('/paymentCardsPage'); // Redirige después de iniciar sesión
+            const response = await auth.loginWithGoogle();
+            const user = response.user;
+    
+            if (!user) {
+                throw new Error("El usuario no está definido");
+            }
+    
+            const userDocRef = doc(db, "users", user.email);
+            const userDoc = await getDoc(userDocRef);
+    
+            if (userDoc.exists()) {
+                const userData = userDoc.data();
+                
+                // Verifica si todos los campos del modelo están completos
+                const isUserDataComplete = Object.keys(userModel).every(key => userData[key]);
+                
+                if (isUserDataComplete) {
+                    // Redirige a la página "EspaciosDeTrabajo" si los datos están completos
+                    router.push('/workSpaces');
+                } else {
+                    // Redirige a la página de registro de usuario si faltan datos
+                    router.push({
+                        pathname: '/RegisterUser',
+                        query: {
+                          email: user.email,
+                          username: user.displayName,
+                        },
+                      });
+                }
+            } else {
+                // Si el usuario no existe en la base de datos, guárdalo y redirige a "RegisterUser"
+                const newUser = {
+                    ...userModel,
+                    email: user.email || '',
+                    username: user.displayName || '',
+                };
+                await saveUserToFirestore(newUser);
+                router.push({
+                    pathname: '/RegisterUser',
+                    query: {
+                      email: user.email,
+                      username: user.displayName,
+                    },
+                  });
+            }
         } catch (error) {
             console.error("Error al iniciar sesión con Google:", error.message);
         }
     };
-
+   
     return (
         <div className='loginDiv'>
             <div className='loginGrid'>

@@ -1,7 +1,7 @@
-// pages/LoginRegister.js
 import { useState } from 'react';
 import styles from '../styles/LoginRegister.module.css';
 import { useRouter } from 'next/router';
+import { useAuth } from '@/context/authContext'; // Importar el contexto de autenticación
 
 const LoginRegister = () => {
   const [formMode, setFormMode] = useState('login'); // Estado para determinar si se muestra el formulario de registro o de inicio de sesión
@@ -16,6 +16,7 @@ const LoginRegister = () => {
   const [isPasswordMatch, setIsPasswordMatch] = useState(true);
   const [isFormComplete, setIsFormComplete] = useState(false); // Estado para controlar si el formulario está completo
   const router = useRouter();
+  const { register, login } = useAuth(); // Extraer las funciones de registro e inicio de sesión del contexto
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -46,15 +47,23 @@ const LoginRegister = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Redirigir según el formulario completado
-    if (isFormComplete) {
-      if (formMode === 'register') {
-        router.push('/RegisterUser'); // Redirige a RegisterUser para el formulario de registro
-      } else {
-        router.push('/ValidEmail'); // Redirige a ValidEmail para el formulario de inicio de sesión
+    try {
+      if (isFormComplete) {
+        if (formMode === 'register') {
+          await register(formData.email, formData.password); // Llamar a la función de registro
+          router.push({
+            pathname: '/RegisterUser',
+            query: { email: formData.email, username: formData.username },
+          });
+        } else {
+          await login(formData.email, formData.password); // Llamar a la función de inicio de sesión
+          router.push('/ValidEmail');
+        }
       }
+    } catch (error) {
+      console.error("Error during authentication:", error.message);
     }
   };
 

@@ -1,72 +1,86 @@
-// pages/NameCompany.js
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from '../styles/NameCompany.module.css';
 
 const NameCompany = () => {
-  const [companyName, setCompanyName] = useState('');
-  const [companyType, setCompanyType] = useState('');
+  const [formData, setFormData] = useState({
+    companyName: '',
+    companyType: '',
+    legalName: '',
+    taxId: '',
+    industry: '',
+    website: '',
+    businessAddress: '',
+    domicile: '',
+    addressNumber: '',
+    postalCode: '',
+    description: ''
+  });
+
   const router = useRouter();
 
-  const handleNameChange = (e) => {
-    setCompanyName(e.target.value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value
+    }));
   };
 
   const handleTypeSelect = (type) => {
-    setCompanyType(type);
+    setFormData(prevData => ({
+      ...prevData,
+      companyType: type
+    }));
   };
 
   const handleNextClick = () => {
-    if (companyName && companyType) {
-      router.push('/nextPage'); // Cambia '/nextPage' a la página que desees
+    if (formData.companyName && formData.companyType) {
+      router.push({
+        pathname: '/CompanyForms',
+        query: { ...formData }
+      });
     } else {
       alert('Por favor, completa todos los campos.');
     }
   };
 
   const handleBackClick = () => {
-    router.back(); // Regresa a la página anterior
+    router.back();
   };
 
   return (
     <div className={styles.container}>
-      <button
-        className={styles.backButton}
-        onClick={handleBackClick}
-      >
+      <button className={styles.backButton} onClick={handleBackClick}>
         Regresar
       </button>
-
       <h1 className={styles.title}>¿Cómo se llama tu empresa o equipo?</h1>
-      
       <input
         type="text"
+        name="companyName"
         placeholder="Nombre del equipo o espacio"
-        value={companyName}
-        onChange={handleNameChange}
+        value={formData.companyName}
+        onChange={handleChange}
         className={styles.input}
       />
-
       <div className={styles.buttonContainer}>
         <button
-          className={`${styles.typeButton} ${companyType === 'Espacio de trabajo común' ? styles.active : ''}`}
+          className={`${styles.typeButton} ${formData.companyType === 'Espacio de trabajo común' ? styles.active : ''}`}
           onClick={() => handleTypeSelect('Espacio de trabajo común')}
         >
           Espacio de trabajo común
         </button>
-        
         <button
-          className={`${styles.typeButton} ${companyType === 'Empresa' ? styles.active : ''}`}
+          className={`${styles.typeButton} ${formData.companyType === 'Empresa' ? styles.active : ''}`}
           onClick={() => handleTypeSelect('Empresa')}
         >
           Empresa
         </button>
       </div>
-
       <button
         className={styles.nextButton}
         onClick={handleNextClick}
-        disabled={!companyName || !companyType}
+        disabled={!formData.companyName || !formData.companyType}
       >
         Siguiente
       </button>

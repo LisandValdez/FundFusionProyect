@@ -1,9 +1,13 @@
 // pages/RegisterUser.js
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '../styles/RegisterUser.module.css';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'; // Asegúrate de que la función esté exportada correctamente
+import { saveUserToFirestore } from './api/user';
 
 const RegisterUser = () => {
+  const router = useRouter();
+  const { email, username } = router.query;
+
   const [formData, setFormData] = useState({
     fullName: '',
     birthDate: '',
@@ -15,8 +19,16 @@ const RegisterUser = () => {
     addressNumber: '',
   });
 
-  const [isValid, setIsValid] = useState(true); // Estado para controlar si el formulario está completo
-  const router = useRouter();
+  const [isValid, setIsValid] = useState(true);
+
+  useEffect(() => {
+    console.log("Router Query:", router.query);
+    setFormData(prevData => ({
+      ...prevData,
+      email: email || '',
+      username: username || ''
+    }));
+  }, [email, username]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,17 +38,26 @@ const RegisterUser = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Verificar si todos los campos están llenos
+    console.log("Submit button clicked");
     const isFormComplete = Object.values(formData).every((field) => field.trim() !== '');
     setIsValid(isFormComplete);
-
+  
     if (isFormComplete) {
-      router.push('/ValidEmail');
+      try {
+        console.log("Saving user data to Firestore");
+        await saveUserToFirestore(formData);
+        console.log("Redirecting to ValidEmail");
+        router.push('/ValidEmail');
+      } catch (error) {
+        console.error("Error al guardar los datos del usuario: ", error.message);
+      }
+    } else {
+      console.log("Form is not complete");
     }
   };
-
+  console.log("Form Data:", formData);
   return (
     <div className={styles.container}>
       <button className={styles.backButton} onClick={() => router.back()}>
@@ -108,13 +129,13 @@ const RegisterUser = () => {
           placeholder="Numeración"
           className={styles.input}
         />
-        <button
-          type="submit"
-          className={styles.nextButton}
-          disabled={!Object.values(formData).every((field) => field.trim() !== '')}
-        >
-          Siguiente
-        </button>
+<button
+    type="submit"
+    className={styles.nextButton}
+    onClick={() => handleSubmit({ preventDefault: () => {} })}  // Llama a handleSubmit manualmente
+>
+    Siguiente
+</button>
       </form>
     </div>
   );

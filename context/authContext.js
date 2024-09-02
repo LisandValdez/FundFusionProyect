@@ -64,7 +64,7 @@ export function AuthProvider({ children }) {
             const googleProvider = new GoogleAuthProvider();
             const response = await signInWithPopup(auth, googleProvider);
             console.log("User logged in with Google:", response.user);
-            return response.user;
+            return response;
         } catch (error) {
             console.error("Error logging in with Google:", error.message);
             throw error;

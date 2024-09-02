@@ -1,13 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 const CompanyForms = () => {
   const router = useRouter();
+  const [formData, setFormData] = useState({
+    companyName: '',
+    companyType: '',
+    legalName: '',
+    taxId: '',
+    industry: '',
+    website: '',
+    businessAddress: '',
+    domicile: '',
+    addressNumber: '',
+    postalCode: '',
+    description: ''
+  });
 
-  const handleBackClick = () => {
-    router.back();
+  useEffect(() => {
+    if (router.query) {
+      setFormData(router.query);
+    }
+  }, [router.query]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value
+    }));
   };
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-indigo-900 flex items-center justify-center">
       <div className="max-w-xl w-full p-8 bg-black bg-opacity-40 rounded-lg shadow-lg relative">
@@ -46,20 +68,26 @@ const CompanyForms = () => {
               <option>Secundario</option>
               <option>Terciario</option>
             </select>
-          </div>
+            </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-white text-sm font-medium mb-2">Razón social</label>
               <input
                 type="text"
-                className="w-full p-2.5 bg-transparent border border-blue-500 rounded-md text-white"
+                name="legalName"
+                value={formData.legalName}
+                onChange={handleChange}
                 placeholder="Nombre legal de la empresa"
+                className="w-full p-2.5 bg-transparent border border-blue-500 rounded-md text-white"
               />
             </div>
             <div>
               <label className="block text-white text-sm font-medium mb-2">NIF / CIF / RUT</label>
               <input
                 type="text"
+                name="taxId"
+                value={formData.taxId}
+                onChange={handleChange}
                 className="w-full p-2.5 bg-transparent border border-blue-500 rounded-md text-white"
                 placeholder="00.0000000"
               />
@@ -70,6 +98,9 @@ const CompanyForms = () => {
               <label className="block text-white text-sm font-medium mb-2">Industria</label>
               <input
                 type="text"
+                name="industry"
+                value={formData.industry}
+                onChange={handleChange}
                 className="w-full p-2.5 bg-transparent border border-blue-500 rounded-md text-white"
                 placeholder="Indumentaria"
               />
@@ -78,6 +109,9 @@ const CompanyForms = () => {
               <label className="block text-white text-sm font-medium mb-2">Sitio web</label>
               <input
                 type="text"
+                name="website"
+                value={formData.website}
+                onChange={handleChange}
                 className="w-full p-2.5 bg-transparent border border-blue-500 rounded-md text-white"
                 placeholder="www.fundfusions.io"
               />
@@ -88,6 +122,9 @@ const CompanyForms = () => {
               <label className="block text-white text-sm font-medium mb-2">Dirección comercial</label>
               <input
                 type="text"
+                name="businessAddress"
+                value={formData.businessAddress}
+                onChange={handleChange}
                 className="w-full p-2.5 bg-transparent border border-blue-500 rounded-md text-white"
                 placeholder="Estados Unidos, Florida"
               />
@@ -96,6 +133,9 @@ const CompanyForms = () => {
               <label className="block text-white text-sm font-medium mb-2">Domicilio</label>
               <input
                 type="text"
+                name="domicile"
+                value={formData.domicile}
+                onChange={handleChange}
                 className="w-full p-2.5 bg-transparent border border-blue-500 rounded-md text-white"
                 placeholder="Arrayan"
               />
@@ -106,6 +146,9 @@ const CompanyForms = () => {
               <label className="block text-white text-sm font-medium mb-2">Numeración</label>
               <input
                 type="text"
+                name="addressNumber"
+                value={formData.addressNumber}
+                onChange={handleChange}
                 className="w-full p-2.5 bg-transparent border border-blue-500 rounded-md text-white"
                 placeholder="8571"
               />
@@ -114,6 +157,9 @@ const CompanyForms = () => {
               <label className="block text-white text-sm font-medium mb-2">Código postal</label>
               <input
                 type="text"
+                name="postalCode"
+                value={formData.postalCode}
+                onChange={handleChange}
                 className="w-full p-2.5 bg-transparent border border-blue-500 rounded-md text-white"
                 placeholder="5000"
               />
