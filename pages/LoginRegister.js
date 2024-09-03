@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import styles from '../styles/LoginRegister.module.css';
 import { useRouter } from 'next/router';
-import { useAuth } from '@/context/authContext'; // Importar el contexto de autenticación
+import { useAuth } from '@/context/authContext';
 
 const LoginRegister = () => {
-  const [formMode, setFormMode] = useState('login'); // Estado para determinar si se muestra el formulario de registro o de inicio de sesión
+  const auth = useAuth();
+  const [formMode, setFormMode] = useState('login');
   const [formData, setFormData] = useState({
     email: '',
     username: '',
@@ -14,9 +15,9 @@ const LoginRegister = () => {
   });
 
   const [isPasswordMatch, setIsPasswordMatch] = useState(true);
-  const [isFormComplete, setIsFormComplete] = useState(false); // Estado para controlar si el formulario está completo
+  const [isFormComplete, setIsFormComplete] = useState(false);
   const router = useRouter();
-  const { register, login } = useAuth(); // Extraer las funciones de registro e inicio de sesión del contexto
+  const { register, login } = auth;
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -26,7 +27,6 @@ const LoginRegister = () => {
         [name]: type === 'checkbox' ? checked : value,
       };
 
-      // Verificar si el formulario está completo
       if (formMode === 'register') {
         setIsFormComplete(
           newData.email &&
@@ -52,15 +52,17 @@ const LoginRegister = () => {
     try {
       if (isFormComplete) {
         if (formMode === 'register') {
-          await register(formData.email, formData.password); // Llamar a la función de registro
+          await register(formData.email, formData.password);
           router.push({
             pathname: '/RegisterUser',
             query: { email: formData.email, username: formData.username },
           });
         } else {
-          await login(formData.email, formData.password); // Llamar a la función de inicio de sesión
+          await login(formData.email, formData.password);
           router.push('/ValidEmail');
         }
+      } else {
+        console.error("Formulario incompleto.");
       }
     } catch (error) {
       console.error("Error during authentication:", error.message);
